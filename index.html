@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TCC – UNIFIO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-dark: #004998;
+      --blue-mid:  #3f76b1;
+      --blue-light: #6a9fd4;
+      --white: #ffffff;
+      --off-white: #f4f7fc;
+      --text: #1a2a3a;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--off-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Source Sans 3', sans-serif;
+      padding: 24px 16px;
+    }
+
+    /* ── Card ── */
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--white);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow:
+        0 4px 6px rgba(0,73,152,.08),
+        0 20px 60px rgba(0,73,152,.14);
+      animation: rise .7s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    /* ── Header bar ── */
+    .header {
+      background: var(--blue-dark);
+      padding: 22px 28px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 90% -20%, rgba(63,118,177,.55) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at -10% 110%, rgba(63,118,177,.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .institution {
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 600;
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.18rem;
+      line-height: 1.45;
+      color: var(--white);
+      position: relative;
+    }
+
+    /* ── Accent stripe ── */
+    .stripe {
+      height: 5px;
+      background: linear-gradient(90deg, var(--blue-mid) 0%, var(--blue-light) 100%);
+    }
+
+    /* ── Body ── */
+    .body {
+      padding: 28px 28px 32px;
+    }
+
+    /* PDF preview block */
+    .preview {
+      background: var(--off-white);
+      border: 1.5px solid #dce8f5;
+      border-radius: 12px;
+      padding: 22px 20px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .pdf-icon {
+      flex-shrink: 0;
+      width: 52px;
+      height: 62px;
+      background: var(--white);
+      border: 1.5px solid #c8dcf0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,73,152,.10);
+      position: relative;
+    }
+
+    .pdf-icon::after {
+      content: '';
+      position: absolute;
+      top: -1px; right: -1px;
+      width: 14px; height: 14px;
+      background: var(--blue-mid);
+      border-radius: 0 7px 0 7px;
+    }
+
+    .pdf-icon svg { z-index: 1; }
+
+    .preview-text .label {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      margin-bottom: 4px;
+    }
+
+    .preview-text .doc-title {
+      font-size: .82rem;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    /* Button */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px 20px;
+      background: var(--blue-dark);
+      color: var(--white);
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: .95rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-decoration: none;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 18px rgba(0,73,152,.30);
+    }
+
+    .btn:hover {
+      background: #003d80;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(0,73,152,.38);
+    }
+
+    .btn:active { transform: translateY(0); }
+
+    .btn svg { flex-shrink: 0; }
+
+    /* Footer */
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: .72rem;
+      color: #8ca5bf;
+      letter-spacing: .04em;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <div class="header">
+    <p class="institution">UNIFIO — Centro Universitário</p>
+    <h1 class="title">
+      Crescimento Inicial de Mudas Pré-Brotadas de Cana-de-Açúcar sob Fertirrigação com Vinhaça e Adubação Mineral
+    </h1>
+  </div>
+
+  <div class="stripe"></div>
+
+  <div class="body">
+
+    <div class="preview">
+      <div class="pdf-icon">
+        <!-- PDF file icon -->
+        <svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 2h10l6 6v18a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2z" fill="#e8f0fb" stroke="#3f76b1" stroke-width="1.5"/>
+          <path d="M14 2v6h6" stroke="#3f76b1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="4" y="22" font-family="sans-serif" font-size="6" font-weight="700" fill="#004998">PDF</text>
+        </svg>
+      </div>
+      <div class="preview-text">
+        <p class="label">Trabalho de Conclusão de Curso</p>
+        <p class="doc-title">Agronomia · UNIFIO</p>
+      </div>
+    </div>
+
+    <a class="btn"
+       href="https://drive.google.com/file/d/1DLQ-rbQDm-x8hZvBbpNPngdOfA1TafC-/view?usp=sharing"
+       target="_blank" rel="noopener">
+      <!-- Eye icon -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+      Visualizar PDF
+    </a>
+
+    <p class="footer">UNIFIO &nbsp;·&nbsp; Centro Universitário das Faculdades Integradas de Ourinhos</p>
+  </div>
+
+</div>
+
+</body>
+</html>
